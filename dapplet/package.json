@@ -1,0 +1,25 @@
+{
+  "name": "dapplet-showcase.dapplet-base.eth",
+  "version": "0.1.5",
+  "description": "Demonstration of the capabilities of the Dapplets platform",
+  "main": "lib/index.js",
+  "scripts": {
+    "start": "rollup -w --config rollup.config.js",
+    "build": "rollup --config rollup.config.js"
+  },
+  "author": "Dapplets Project",
+  "license": "MIT",
+  "devDependencies": {
+    "@dapplets/dapplet-extension": "^0.20.3",
+    "@rollup/plugin-commonjs": "^17.0.0",
+    "@rollup/plugin-image": "^2.0.5",
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^11.0.0",
+    "@rollup/plugin-typescript": "^8.0.0",
+    "rollup": "^2.34.1",
+    "rollup-plugin-serve": "^1.1.0",
+    "tslib": "^2.0.3",
+    "typescript": "^4.1.2"
+  },
+  "dependencies": {}
+}
