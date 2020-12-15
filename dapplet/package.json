@@ -1,6 +1,6 @@
 {
   "name": "dapplet-showcase.dapplet-base.eth",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Demonstration of the capabilities of the Dapplets platform",
   "main": "lib/index.js",
   "scripts": {

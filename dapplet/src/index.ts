@@ -16,7 +16,31 @@ export default class TwitterFeature {
                     "DEFAULT": {
                         label: 'Dapplets',
                         img: DAPPLETS_ICON,
-                        exec: (ctx, me) => alert('Hello, World!')
+                        exec: async (ctx, me) => {
+                            const account = adapter.getCurrentUser();
+                            const wallet = await Promise.resolve(Core.wallet({ ...account, domainId: 1 }));
+                            wallet.sendAndListen('eth_accounts', [], {
+                                result: (op, { type, data }) => {
+                                    const address = data[0];
+                                    wallet.sendAndListen('personal_sign', [ctx.text, address], {
+                                        result: (op, { type, data }) => me.setState("SIGNED")
+                                    });
+                                }
+                            });
+                            me.setState("PENDING");
+                        }
+                    },
+                    "SIGNED": {
+                        label: 'Signed',
+                        img: DAPPLETS_ICON,
+                        exec: (ctx, me) => {
+                            me.setState("DEFAULT");
+                        }
+                    },
+                    "PENDING": {
+                        label: 'Pending',
+                        disabled: true,
+                        img: DAPPLETS_ICON
                     }
                 })
             ]
