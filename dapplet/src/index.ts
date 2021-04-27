@@ -18,7 +18,7 @@ export default class TwitterFeature {
                         img: DAPPLETS_ICON,
                         exec: async (ctx, me) => {
                             const account = adapter.getCurrentUser();
-                            const wallet = await Promise.resolve(Core.wallet({ ...account, domainId: 1 }));
+                            const wallet = Core.wallet({ type: 'ethereum', network: 'rinkeby', ...account, domainId: 1 });
                             wallet.sendAndListen('eth_accounts', [], {
                                 result: (op, { type, data }) => {
                                     const address = data[0];
