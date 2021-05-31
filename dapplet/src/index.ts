@@ -11,14 +11,15 @@ export default class TwitterFeature {
     ) {
         const { button } = this.adapter.exports;
         this.config = {
-            POST_SOUTH: [
+            POST: () => [
                 button({
                     "DEFAULT": {
                         label: 'Dapplets',
                         img: DAPPLETS_ICON,
                         exec: async (ctx, me) => {
                             const account = adapter.getCurrentUser();
-                            const wallet = Core.wallet({ type: 'ethereum', network: 'rinkeby', ...account, domainId: 1 });
+                            const wallet = await Core.wallet({ type: 'ethereum', network: 'rinkeby', ...account, domainId: 1 });
+                            if (!await wallet.isConnected()) await wallet.connect();
                             wallet.sendAndListen('eth_accounts', [], {
                                 result: (op, { type, data }) => {
                                     const address = data[0];
